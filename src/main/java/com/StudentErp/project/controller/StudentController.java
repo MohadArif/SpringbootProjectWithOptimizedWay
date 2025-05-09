@@ -2,6 +2,8 @@ package com.StudentErp.project.controller;
 
 import com.StudentErp.project.entity.Student;
 import com.StudentErp.project.service.StudentService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
-@Controller
+@RestController
 @RequestMapping("/api")
+@Tag(name = "Student Controller")
 public class StudentController {
 
     @Autowired
@@ -23,28 +26,33 @@ public class StudentController {
     }
 
     @PostMapping("/save")
+    @Operation(summary = "create student end-point")
     public ResponseEntity<?> createStudent(@RequestBody Student student){
         studentService.createStudent(student);
         return ResponseEntity.ok().body("student created!!");
     }
 
     @GetMapping("/findAll")
+    @Operation(summary = "GetAll student end-point")
     public ResponseEntity<?> findAllStudent(){
         return ResponseEntity.ok().body(studentService.fetchAllStudents());
     }
 
     @GetMapping("/findById/{id}")
+    @Operation(summary = "find student by id end-point")
     public ResponseEntity<?> findStudentById(@PathVariable Long id){
         return ResponseEntity.ok().body(studentService.findStudentById(id));
     }
 
     @PutMapping("/update")
+    @Operation(summary = "update student end-point")
     public ResponseEntity<?> updateStudentDetails(@RequestBody Student student){
         Student updatedStudent = studentService.updateById(student);
         return ResponseEntity.ok().body(updatedStudent);
     }
 
     @DeleteMapping("/delete/{id}")
+    @Operation(summary = "delete student by id end-point")
     public ResponseEntity<?> deleteStudent(@PathVariable Long id){
         studentService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);

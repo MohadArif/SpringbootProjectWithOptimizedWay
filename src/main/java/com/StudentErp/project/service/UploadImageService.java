@@ -8,5 +8,6 @@ public interface UploadImageService {
 
     public void uploadImage(MultipartFile file) throws IOException;
 
-    public byte[] fetchImage(String name);
+//    public byte[] fetchImage(String name);
 }
+
