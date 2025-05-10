@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/apis")
 public class StudentController {
 
     @Autowired
